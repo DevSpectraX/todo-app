@@ -1,0 +1,20 @@
+<h2 class="title">Galeria</h2>
+<section class="gallery">
+  @if (vm.viewState.isLoading()) {
+    <div class="loader"></div>
+  } @else if (vm.viewState.error(); as error) {
+    <p>{{ vm.viewState.error() }}</p>
+  } @else {
+    <!-- Siempre poner $ en variables de tipo observables -->
+    @for (column of this.vm.viewState.photo(); track $index) {
+      <div class="gallery-column">
+        @for (photo of column; track photo.id) {
+          <app-unsplash-photo-mvvm [photo]="photo"></app-unsplash-photo-mvvm>
+        }
+      </div>
+
+    } @empty {
+      <p>No hay fotos</p>
+    }
+  }
+</section>

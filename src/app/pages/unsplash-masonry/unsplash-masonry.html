@@ -1,0 +1,14 @@
+<h2 class="title">Galeria</h2>
+<section class="gallery">
+  <!-- Siempre poner $ en variables de tipo observables -->
+  @for (column of (unsplashColumns$ | async) ?? []; track $index) {
+    <div class="gallery-column">
+      @for (photo of column; track photo.id) {
+        
+        <app-unsplash-photo [photo]="photo"></app-unsplash-photo>
+      }
+    </div>
+  } @empty {
+    <p>Cargando fotos</p>
+  }
+</section>

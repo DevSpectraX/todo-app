@@ -1,0 +1,14 @@
+<article>
+  <figure class="product">
+    <img class="product-img" [src]="card().thumbnail" [alt]="card().title" />
+    <figcaption class="product-caption">{{ card().title }}</figcaption>
+  </figure>
+  <div class="product-detail">
+    <p>{{ card().brand }}</p>
+    <p>{{ card().description }}</p>
+    <div class="product-box">
+      <p>Valoración: {{ card().rating }} / 5</p>
+      <p>{{ card().price }} €</p>
+    </div>
+  </div>
+</article>

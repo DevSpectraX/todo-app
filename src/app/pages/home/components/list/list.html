@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>Checkbox</th>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Completed</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (todo of todo(); track todo.id) {
+      <tr>
+        <td><input type="checkbox" [checked]="todo.completed" (change)="toggled.emit(todo.id)"></td>
+        <td>{{ todo.id }}</td>
+        <td>{{ todo.title | shortedTitle}}</td>
+        <td>{{ todo.completed }}</td>
+        <td><button type="button" (click)="deleteID.emit(todo.id) " appSecureDelete>Eliminar</button></td>
+        <td><button type="button" (click)="editTask.emit(todo.id)">Modificar</button></td>
+
+      </tr>
+    }
+  </tbody>
+</table>

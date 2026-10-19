@@ -1,0 +1,37 @@
+<h2 class="title">Flex Paso a Paso</h2>
+<section class="group">
+  <h3 class="group-title">1. Colocar en horizontal - <code>justify-content</code></h3>
+  <p class="group-subtitle">
+    Mueve los elementos a lo largo del eje principal: izquierda, centro, derecha, o repartiendo el
+    hueco que sobra entre ellos
+  </p>
+
+  @for (demo of justify; track demo.variant) {
+    <app-flex-demo [code]="demo.code" [variant]="demo.variant"></app-flex-demo>
+  }
+</section>
+<!-- Secciones nuevas para align y direction -->
+<section>
+  <h3 class="group-title">2. Colocar en el eje vertical - <code>aling-item</code></h3>
+  <p class="group-subtitle">
+    Mueve los elementos a lo largo del eje vertical: arriba, centro, abajo o ocupando todo el espacio
+  </p>
+  @for (demo of alignItems; track demo.variant) {
+    <app-flex-demo [code]="demo.code" [variant]="demo.variant"></app-flex-demo>
+  }
+</section>
+<section>
+  <h3 class="group-title">3. Colocar en vertical - <code>align-content</code></h3>
+  <p class="group-subtitle">
+  Mueve los elementos a lo largo del eje vertical: arriba, centro, abajo o repartiendo el hueco que sobra entre ellos</p>
+    @for(demo of alignContent; track demo.variant){
+      <app-flex-demo [code]="demo.code" [variant]="demo.variant"></app-flex-demo>
+    }
+</section>
+<section>
+  <h3 class="group-title">4. Distribuir como columnas o filas</h3>
+  <p class="group-subtitle">Mueve los elementos de manera que se comporten como columnas o filas <code>flex-direction</code></p>
+  @for (demo of flexDirection; track demo.variant) {
+    <app-flex-demo [code]="demo.code" [variant]="demo.variant"></app-flex-demo>
+  }
+</section>

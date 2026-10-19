@@ -1,0 +1,9 @@
+<h2 class="title">Productos de la api DummyJSON</h2>
+<section class="product-section">
+  @for (product of productList$ | async; track product.id) {
+    <app-dummyjson-card [card]="product"></app-dummyjson-card>
+  }
+  @empty {
+    <p>cargando</p>
+  }
+</section>

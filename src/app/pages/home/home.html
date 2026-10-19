@@ -1,0 +1,20 @@
+<h1>{{ todoService.todoList().length | pluralize: 'tarea' : 'tareas' }}</h1>
+<form [formGroup]="form">
+  <input type="text" formControlName="title" placeholder="Buscar tarea" />
+</form>
+<app-list
+  [todo]="getList()"
+  (toggled)="this.todoService.taskCompleted($event)"
+  (deleteID)="deleteTaskID($event)"
+  (editTask)="editTask($event)"
+></app-list>
+
+<button (click)="goToForm()">Nueva Tarea</button>
+<button (click)="goToSummary()">Resumen</button>
+
+<!-- Botón para seleccionar todas las tareas y dejarlas checked -->
+
+<button (click)="checkAll()">Marcar todas</button>
+
+<!-- Botón nuevo para borrar todo -->
+<button (click)="deleteAll()" appSecureDelete>Eliminar todo</button>

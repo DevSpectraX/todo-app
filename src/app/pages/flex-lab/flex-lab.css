@@ -1,0 +1,16 @@
+.title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: white;
+}
+.group {
+  margin-bottom: 36px;
+}
+.group-title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  color: white;
+}
+.group-subtitle {
+  margin-bottom: 16px;
+}

@@ -1,0 +1,11 @@
+<figure class="photo">
+  <!-- entre llaves de array apunta a objeto -->
+  <img
+    class="photo-img"
+    [src]="photo().src"
+    [alt]="photo().title"
+    [width]="photo().width"
+    [height]="photo().height"
+  />
+  <figcaption class="photo-caption" >{{photo().title}}</figcaption>
+</figure>

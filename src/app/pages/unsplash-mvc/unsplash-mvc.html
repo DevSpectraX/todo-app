@@ -1,0 +1,21 @@
+<h2 class="title">Galeria</h2>
+<button #button >Remove</button>
+<section class="gallery">
+  @if (this.isLoading) {
+    <div class="loader"></div>
+  } @else if (this.error; as error) {
+    <p>{{ this.error }}</p>
+  } @else {
+    <!-- Siempre poner $ en variables de tipo observables -->
+    @for (column of this.photos; track $index) {
+      <div class="gallery-column">
+        @for (photo of column; track photo.id) {
+          <app-unsplash-photo-mvc [photo]="photo"></app-unsplash-photo-mvc>
+        }
+      </div>
+
+    } @empty {
+      <p>No hay fotos</p>
+    }
+  }
+</section>

@@ -1,0 +1,7 @@
+<form [formGroup]="form" (ngSubmit)="getFunction()">
+  <input type="text" formControlName="title" placeholder="Nueva tarea" appAutofocus>
+  @if (form.controls.title.invalid && form.controls.title.touched) {
+    <p>El título es obligatorio y debe tener mínimo 3 carácteres</p>
+  }
+  <button type="submit">Añadir</button>
+</form>

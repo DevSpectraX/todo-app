@@ -1,0 +1,13 @@
+<figure class="photo">
+  <!-- entre llaves de array apunta a objeto -->
+  <img
+    class="photo-img"
+    
+    [src]="photo().urls.small"
+    [alt]="photo().alt_description"
+    [width]="photo().width"
+    //Sin height porque si no se deforman
+    //[height]="photo().height"
+  />
+  <figcaption class="photo-caption">{{ photo().alt_description }}</figcaption>
+</figure>

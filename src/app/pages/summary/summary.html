@@ -1,0 +1,16 @@
+<h1>Resumen de tareas</h1>
+
+<section>
+  <h2>Tareas Pendientes</h2>
+  <app-pending-tasks [todo]="this.todoService.onlyTasksIncompleted()"></app-pending-tasks>
+</section>
+
+<section>
+  <h2>Tareas Completadas</h2>
+  <app-done-tasks [todo]="this.todoService.onlyTasksCompleted()"></app-done-tasks>
+</section>
+
+<div>
+  <button (click)="goToHome()">Home</button>
+  <button (click)="deleteTasksCompleted()">Eliminar Completados</button>
+</div>

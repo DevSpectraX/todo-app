@@ -1,0 +1,16 @@
+.title{
+    margin: 0 0 20px;
+    font-size: 20px;
+    color: white;
+}
+.gallery{
+    display: flex;
+    gap: 16px;
+}
+.gallery-column{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+    min-width: 0;
+}

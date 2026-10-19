@@ -1,0 +1,113 @@
+.demo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.demo-code {
+  flex: none;
+  width: 230px;
+  font-family: monospace;
+  font-size: 13px;
+  color: white;
+}
+.box {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  height: 120px;
+  padding: 8px;
+  border: 2px dashed var(--primary);
+  border-radius: 8px;
+  background: white;
+}
+.box-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 6px;
+  background: var(--secondary);
+  font-weight: 600;
+  /* Color tambien afecta a lineas */
+  color: white;
+}
+
+/* Justify */
+.box-justify-start {
+  justify-content: flex-start;
+}
+.box-justify-center {
+  justify-content: center;
+}
+.box-justify-end {
+  justify-content: flex-end;
+}
+.box-justify-between {
+  justify-content: space-between;
+}
+.box-justify-around {
+  justify-content: space-around;
+}
+
+/* Aligns items*/
+.box-align-flex-start {
+  align-items: flex-start;
+}
+.box-align-center {
+  align-items: center;
+}
+.box-align-flex-end {
+  align-items: flex-end;
+}
+.box-align-stretch {
+  align-items: stretch;
+}
+.box-align-stretch .box-item{
+  height: auto;
+}
+.box-align-baseline {
+  align-items: baseline;
+}
+/* Align content */
+.box-align-content-flex-start {
+  align-content: flex-start;
+}
+.box-align-content-center {
+  align-content: center;
+}
+.box-align-content-flex-end {
+  align-content: flex-end;
+}
+.box-align-content-baseline {
+  align-content: baseline;
+}
+.box-align-content-strech {
+  align-content: stretch;
+}
+.box-align-content-space-around {
+  align-content: space-around;
+}
+.box-align-content-space-between {
+  align-content: space-between;
+}
+.box-align-content-space-evenly {
+  align-content: space-evenly;
+}
+/* Direction */
+
+.box-flex-direction-row {
+  flex-direction: row;
+}
+.box-flex-direction-row-reverse {
+  flex-direction: row-reverse;
+}
+.box-flex-direction-column {
+  flex-direction: column;
+  height: 220px;
+}
+.box-flex-direction-column-reverse {
+  flex-direction: column-reverse;
+  height: 220px;
+}
