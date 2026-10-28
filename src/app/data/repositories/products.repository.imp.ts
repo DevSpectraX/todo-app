@@ -6,13 +6,16 @@ import { ProductsRemoteDataSource } from '../datasources/products/source/product
 import { ProductDtoToEntityMapper } from './products/mappers/product-dto-to-entity.mapper';
 import { ProductsLocalDataSource } from '../datasources/products/source/products-local.datasource';
 import { ProductDboToEntityMapper } from './products/mappers/product-dbo-to-entity.mapper';
+import { ProductDtoToDboMapper } from './products/mappers/product-dto-to-dbo.mapper';
+
 
 @Injectable()
 export class ProductsRepositoryImp extends ProductsRepository {
   private readonly remote = inject(ProductsRemoteDataSource);
-  private readonly dtoMapper = inject(ProductDtoToEntityMapper);
+  private readonly dtoToEntityMapper = inject(ProductDtoToEntityMapper);
   private readonly local = inject(ProductsLocalDataSource);
-  private readonly dboMapper = inject(ProductDboToEntityMapper);
+  private readonly dboToEntityMapper = inject(ProductDboToEntityMapper);
+  private readonly dtoToDboMapper = inject(ProductDtoToDboMapper);
 
   //Si no hay productos en local, pedirlos al remoto
   override getProducts(): Observable<ProductsEntity>{
@@ -22,14 +25,16 @@ export class ProductsRepositoryImp extends ProductsRepository {
         if (cached) {
           console.log(`Obtenido de cache: ${cached}`);
 
-          return of(this.dboMapper.mapListFrom(cached));
+          return of(this.dboToEntityMapper.mapListFrom(cached));
         }
         return this.remote.getProducts().pipe(
           tap((dto) => {
-            this.local.
-          })
+            this.local.saveProducts((this.dtoToDboMapper.mapListFrom(dto)))
+            console.log(this.dtoToDboMapper.mapListFrom(dto))
+            
+          }),
           
-          map((dto) => this.dtoMapper.mapListFrom(dto)));
+          map((dto) => this.dtoToEntityMapper.mapListFrom(dto)));
       }
     
     ),

@@ -3,6 +3,7 @@ import { DummyJsonService } from '../../../core/services/dummyjson.service';
 import { DummyjsonMvvmState } from './dummyjson-mvvm.state';
 import { GetProductsUseCase } from '../../../domain/usecases/products/get-products.usecase';
 import { ProductsEntity } from '../../../domain/entities/products/product.entity';
+import { delay } from 'rxjs';
 
 @Injectable()
 export class DummyjsonViewModel {
@@ -11,13 +12,21 @@ export class DummyjsonViewModel {
   protected readonly getProductsUseCase = inject(GetProductsUseCase);
 
   init(): void {
-    this.dummyjson.getProductsList();
+    //Inicializamos los estados
+
+    this.dummyjsonState.isLoading.set(true);
+    this.dummyjsonState.error.set(null);
+
     this.getProductsUseCase.execute({}).subscribe({
       next: (data: ProductsEntity) => {
-        console.log(data);
+        this.dummyjsonState.products.set(data.products);
+
+        //Cambiamos isLoading a false
+        this.dummyjsonState.isLoading.set(false);
       },
-      error: (error: unknown) => {
-        console.log(error);
+      error: (error) => {
+        this.dummyjsonState.error.set(error.message);
+        this.dummyjsonState.isLoading.set(false);
       },
     });
   }

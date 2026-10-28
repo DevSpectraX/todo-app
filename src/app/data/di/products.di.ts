@@ -7,17 +7,22 @@ import { ProductsRemoteDataSourceImp } from "../datasources/products/remote/prod
 import { ProductsRemoteDataSource } from "../datasources/products/source/products-remote.datasource";
 import { ProductDboToEntityMapper } from "../repositories/products/mappers/product-dbo-to-entity.mapper";
 import { ProductsLocalDataSource } from "../datasources/products/source/products-local.datasource";
-import { ProductsLocalDataSourceImp } from "../datasources/products/local/products-local.datasource";
+import { ProductsLocalDataSourceImp } from "../datasources/products/local/products-local.datasource.imp";
+import { ProductDtoToDboMapper } from "../repositories/products/mappers/product-dto-to-dbo.mapper";
+import { LocalStoragePort } from "../../core/ports/storage.ports";
+import { LocalStoragePortImp } from "../../core/ports/storage.ports.imp";
 
 export function provideProductsDi(): EnvironmentProviders {
     return makeEnvironmentProviders([
         GetProductsUseCase, 
         
-        ProductDtoToEntityMapper, 
+        ProductDtoToEntityMapper,
+        ProductDtoToDboMapper, 
         ProductDboToEntityMapper,
 
         {provide: ProductsRepository, useClass: ProductsRepositoryImp},
         {provide: ProductsRemoteDataSource, useClass: ProductsRemoteDataSourceImp},
-        {provide: ProductsLocalDataSource, useClass: ProductsLocalDataSourceImp}
+        {provide: ProductsLocalDataSource, useClass: ProductsLocalDataSourceImp},
+        {provide: LocalStoragePort, useClass: LocalStoragePortImp}
     ]);
 }

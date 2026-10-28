@@ -5,10 +5,10 @@ import { ProductDbo } from '../../data/datasources/products/local/dbo/product.db
 
 @Injectable({ providedIn: 'root' })
 export class LocalStoragePortImp extends LocalStoragePort {
-  override getItem(key: string): ProductDbo | null {
-    return readJson(key, null);
+  override getItem<T>(key: string): T | null {
+    return readJson<T | null>(key, null);
   }
-  override setItem(key: string, value: string): boolean {
+  override setItem(key: string, value: unknown): boolean {
     return writeJson(key, value);
   }
   override removeItem(key: string): void {

@@ -7,7 +7,6 @@ import { ProductsDto } from '../../../datasources/products/remote/dto/products.d
 
 @Injectable()
 export class ProductDtoToDboMapper extends Mapper<ProductDto, ProductDbo> {
-  
   mapFrom(dto: ProductDto): ProductDbo {
     return {
       id: dto.id,
@@ -28,17 +27,19 @@ export class ProductDtoToDboMapper extends Mapper<ProductDto, ProductDbo> {
   }
 
   mapTo(dbo: ProductDbo): ProductDto {
-    return dbo as ProductDto
-      
+    return dbo as ProductDto;
   }
 
-   mapListFrom(dto: ProductsDto): ProductsDbo {
-      return {
-        products: dto.products.map((product) => this.mapFrom(product)),
-        total: dto.total,
-        skip: dto.skip,
-        limit: dto.limit,
-        cachedAt: Date.now(),
-      };
-    }
+  mapListFrom(dto: ProductsDto): ProductsDbo {
+    return {
+      products: dto.products.map((product) => {
+       //console.log(product)
+        return this.mapFrom(product);
+      }),
+      total: dto.total,
+      skip: dto.skip,
+      limit: dto.limit,
+      cachedAt: Date.now(),
+    };
+  }
 }

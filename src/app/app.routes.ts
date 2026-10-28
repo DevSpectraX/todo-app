@@ -4,7 +4,6 @@ import { Form } from './pages/form/form';
 import { Summary } from './pages/summary/summary';
 import { FlexLab } from './pages/flex-lab/flex-lab';
 import { Mansory } from './pages/mansory/mansory';
-import { RandomUnsplashService } from './core/services/random-unsplash.service';
 import { UnsplashMasonry } from './pages/unsplash-masonry/unsplash-masonry';
 import { UnsplashMasonryMvvm } from './pages/unsplash-masonry-mvvm/unsplash-masonry';
 import { Dummyjson } from './pages/dummyjson/dummyjson';

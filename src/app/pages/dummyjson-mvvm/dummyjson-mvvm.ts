@@ -5,7 +5,7 @@ import { AsyncPipe } from '@angular/common';
 import { DummyjsonMvvmState } from './viewmodel/dummyjson-mvvm.state';
 
 @Component({
-  imports: [DummyjsonCardMvvm, AsyncPipe],
+  imports: [DummyjsonCardMvvm],
   providers: [DummyjsonViewModel],
   selector: 'app-dummyjson-mvvm',
   styleUrl: './dummyjson-mvvm.css',

@@ -1,9 +1,20 @@
 <h2 class="title">Productos de la api DummyJSON</h2>
 <section class="product-section">
-  @for (product of dummyjsonVM.dummyjsonState.productList$ | async; track product.id) {
-    <app-dummyjson-card-mvvm [card]="product"></app-dummyjson-card-mvvm>
-  }
-  @empty {
-    <p>cargando</p>
+  @if (dummyjsonVM.dummyjsonState.isLoading()) {
+    <div class="products-loader">
+      <!-- From Uiverse.io by mobinkakei -->
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+    </div>
+  } @else if (dummyjsonVM.dummyjsonState.error(); as error) {
+    <p>{{error}}</p>
+  } @else {
+    @for (product of dummyjsonVM.dummyjsonState.products(); track product.id) {
+      <app-dummyjson-card-mvvm [card]="product"></app-dummyjson-card-mvvm>
+    }
   }
 </section>
