@@ -7,7 +7,7 @@ import { ProductsRepository } from '../../repositories/products/products.reposit
 @Injectable()
 export class GetProductsUseCase implements UseCase<{}, ProductsEntity> {
   private readonly repository = inject(ProductsRepository);
-  execute(params: {}): Observable<ProductsEntity> {
-    return this.repository.getProducts();
+  execute(params: {limit: number, skip: number}): Observable<ProductsEntity> {
+    return this.repository.getProducts(params.limit, params.skip);
   }
 }

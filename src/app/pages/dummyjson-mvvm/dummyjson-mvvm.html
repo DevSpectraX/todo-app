@@ -11,10 +11,13 @@
       <div class="shadow"></div>
     </div>
   } @else if (dummyjsonVM.dummyjsonState.error(); as error) {
-    <p>{{error}}</p>
+    <p>{{ error }}</p>
   } @else {
     @for (product of dummyjsonVM.dummyjsonState.products(); track product.id) {
       <app-dummyjson-card-mvvm [card]="product"></app-dummyjson-card-mvvm>
+    }
+    @if (dummyjsonVM.dummyjsonState.hasNextPage()) {
+      <button (click)="dummyjsonVM.loadMore()">Cargar más</button>
     }
   }
 </section>

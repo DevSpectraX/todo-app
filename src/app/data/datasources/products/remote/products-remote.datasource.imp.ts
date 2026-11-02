@@ -9,7 +9,8 @@ import { HttpClient } from '@angular/common/http';
 export class ProductsRemoteDataSourceImp extends ProductsRemoteDataSource {
   private readonly http = inject(HttpClient);
 
-  override getProducts(): Observable<ProductsDto> {
-    return this.http.get<ProductsDto>(`${API_URL}/products`);
+  override getProducts(limit: number, skip: number): Observable<ProductsDto> {
+    return this.http.get<ProductsDto>(`${API_URL}/products`, {params: {limit, skip}});
+
   }
 }

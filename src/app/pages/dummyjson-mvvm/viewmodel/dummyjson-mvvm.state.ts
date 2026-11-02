@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import {
   DummyjsonProductInterface,
   DummyjsonResponseInterface,
@@ -15,4 +15,12 @@ export class DummyjsonMvvmState {
 
   public readonly isLoading = signal<boolean>(false);
   public readonly error = signal<string | null>(null);
+
+  readonly limit = 20;
+  readonly skip = signal<number>(0);
+  readonly total = signal<number>(0);
+
+  readonly hasNextPage = computed(() => this.products.length < this.total())
+
+
 }
