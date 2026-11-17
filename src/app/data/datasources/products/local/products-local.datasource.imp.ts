@@ -13,16 +13,19 @@ import { isExpired } from '../../../../core/utils/dummyjson.utils';
 export class ProductsLocalDataSourceImp extends ProductsLocalDataSource {
   private readonly storage = inject(LocalStoragePort);
 
-  override getProducts(): Observable<ProductsDbo | null> {
-    const dataProducts = this.storage.getItem<ProductsDbo>(KEY);
+  override getProducts(limit: number, skip: number): Observable<ProductsDbo | null> {
+    const key = this.pageKey(limit, skip);
+    const dataProducts = this.storage.getItem<ProductsDbo>(key);
 
     if (
       !dataProducts ||
       !Array.isArray(dataProducts.products) ||
+      dataProducts.limit !== limit ||
+      dataProducts.skip !== skip ||
       isExpired(dataProducts.cachedAt, PRODUCTS_CACHE_TTL_MS)
     ) {
       if (dataProducts) {
-        this.storage.removeItem(KEY);
+        this.storage.removeItem(key);
       }
       return of(null);
     }
@@ -31,7 +34,11 @@ export class ProductsLocalDataSourceImp extends ProductsLocalDataSource {
   }
 
   override saveProducts(products: ProductsDbo): void {
-    this.storage.setItem(KEY, products);
+    this.storage.setItem(this.pageKey(products.limit, products.skip), products);
     console.log('Se ha guardado en cached');
+  }
+
+  private pageKey(limit: number, skip: number): string {
+    return `${KEY}:${limit}:${skip}`;
   }
 }

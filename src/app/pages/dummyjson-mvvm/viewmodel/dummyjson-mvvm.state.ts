@@ -20,7 +20,5 @@ export class DummyjsonMvvmState {
   readonly skip = signal<number>(0);
   readonly total = signal<number>(0);
 
-  readonly hasNextPage = computed(() => this.products.length < this.total())
-
-
+  readonly hasNextPage = computed(() => this.products().length < this.total());
 }

@@ -1,10 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { DummyJsonService } from '../../../core/services/dummyjson.service';
-import { DummyjsonMvvmState } from './dummyjson-mvvm.state';
-import { GetProductsUseCase } from '../../../domain/usecases/products/get-products.usecase';
 import { ProductsEntity } from '../../../domain/entities/products/product.entity';
-import { delay, skip } from 'rxjs';
-import { values } from 'idb-keyval';
+import { GetProductsUseCase } from '../../../domain/usecases/products/get-products.usecase';
+import { DummyjsonMvvmState } from './dummyjson-mvvm.state';
 
 @Injectable()
 export class DummyjsonViewModel {
@@ -51,6 +49,7 @@ export class DummyjsonViewModel {
           this.dummyjsonState.total.set(data.total);
 
           console.log(this.dummyjsonState.skip());
+          console.log(this.dummyjsonState.hasNextPage());
 
           console.log(data.total);
 

@@ -23,6 +23,10 @@
   animation: circle7124 .5s alternate infinite ease;
 }
 
+.scroll-sentinel{
+  height: 1px;
+}
+
 @keyframes circle7124 {
   0% {
     top: 60px;

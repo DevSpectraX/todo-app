@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ProductsRepository } from '../../domain/repositories/products/products.repository';
-import { map, Observable, of, switchMap, tap } from 'rxjs';
+import { exhaustMap, map, Observable, of, switchMap, tap } from 'rxjs';
 import { ProductsEntity } from '../../domain/entities/products/product.entity';
 import { ProductsRemoteDataSource } from '../datasources/products/source/products-remote.datasource';
 import { ProductDtoToEntityMapper } from './products/mappers/product-dto-to-entity.mapper';
@@ -40,7 +40,7 @@ export class ProductsRepositoryImp extends ProductsRepository {
     ); */
     return this.local.getProducts(limit, skip).pipe(
       switchMap((cached) => {
-        if (cached && cached.products.length > skip) {
+        if (cached) {
           console.log('Obtenido de cache');
 
           console.log("Productos en cache" + cached.products.length)

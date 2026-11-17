@@ -1,5 +1,8 @@
 <h2 class="title">Productos de la api DummyJSON</h2>
 <section class="product-section">
+  @for (product of dummyjsonVM.dummyjsonState.products(); track product.id) {
+    <app-dummyjson-card-mvvm [card]="product"></app-dummyjson-card-mvvm>
+  }
   @if (dummyjsonVM.dummyjsonState.isLoading()) {
     <div class="products-loader">
       <!-- From Uiverse.io by mobinkakei -->
@@ -12,12 +15,10 @@
     </div>
   } @else if (dummyjsonVM.dummyjsonState.error(); as error) {
     <p>{{ error }}</p>
-  } @else {
-    @for (product of dummyjsonVM.dummyjsonState.products(); track product.id) {
-      <app-dummyjson-card-mvvm [card]="product"></app-dummyjson-card-mvvm>
+  } @else if (dummyjsonVM.dummyjsonState.hasNextPage()){
+    @if (supportInfiniteScrolls) {
+      <div #loadMoreSentinel class="scroll-sentinel" aria-hidden="true"></div>
     }
-    @if (dummyjsonVM.dummyjsonState.hasNextPage()) {
-      <button (click)="dummyjsonVM.loadMore()">Cargar más</button>
-    }
+    
   }
 </section>
